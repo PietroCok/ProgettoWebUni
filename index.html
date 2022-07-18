@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Il tool di validazione genera un warning nella riga seguente ma eliminando il "problema" l'applicazione non funziona bene con schermi piccoli -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   
+
+
+
+    <link rel="stylesheet" href="css/style_main.css">
+    <title>Progetto</title>
+</head>
+<body>
+
+    <!-- Link alla pagina delle regole -->
+    <div class="help">
+        <button class="help-symbol" onclick="destination('documentazione.html')">?</button>
+    </div>
+        
+
+    <!-- Menu -->
+    <nav class="menu">
+        <div class="actions">
+            <button class="settings-menu" onclick="display_settings()">Impostazioni</button>
+            <button class="start-game" onclick="pre_start()">Nuova partita</button>
+            <button class="scoreboards" onclick="destination('classifica.php')">Classifiche</button>
+        </div>
+    </nav>
+
+    <!-- Posizione del campo di gioco -->
+    <div class="campo-container">
+        <!-- Player Stats -->
+        <div class="player-stats hidden">
+            <!-- Barra salute -->
+            <div class="health-bar">
+                <div class="health">
+                    <span class="actual-health">50</span> / <span class="max-health">50</span>
+                </div>
+            </div>
+            <div class="atk-power">Danni: <span>10</span></div>
+            <div class="armor">Armatura: <span>0</span>%</div>
+        </div>
+
+        <!--  Campo di gioco -->
+        <div class="floor hidden"></div>
+        <div class="info hidden">
+            Trova l'uscita per il piano successivo
+        </div>
+        <table class="campo-di-gioco hidden">
+
+        </table>
+    </div>
+
+    <!-- Finestra assegnazione punti -->
+    <div class="creazione-giocatore overlay hidden">
+        <div class="container">
+            <div class="title">
+                <h3>
+                    Assegna i punti che hai a disposizione
+                </h3>
+            </div>
+
+            <div class="health">Salute: 
+                <div class="change">
+                <button class="remove">-</button><span class="value">0</span><button class="add">+</button>
+                </div>
+            </div>
+
+            <div class="atk">Attacco:
+                <div class="change">
+                    <button class="remove">-</button><span class="value">0</span><button class="add">+</button>
+                </div>
+            </div>
+
+            <div class="def">Difesa: 
+                <div class="change">
+                    <button class="remove">-</button><span class="value">0</span><button class="add">+</button>
+                </div>
+            </div>
+
+            <div class="points">Punti disponibili:
+                <div class="change">
+                    <span class="points-left">15</span>
+                </div> 
+            </div>
+            <div class="buttons">
+                <button class="back">Indietro</button>
+                <button class="confirm">Conferma</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- "Finestra" impostazioni -->
+    <div class="settings overlay hidden">
+        <div class="container">
+            <div class="grid-size">
+                <h3>Impostazioni</h3>
+                <p class="title">Dimensione: <span class="input-visual"></span></p>
+                <div class="slider-container">
+                    <input type="range" min="5" max="10" step="1" class="input-dim" oninput="display_dim()">
+                </div>
+            </div>
+
+            <div class="game-difficulty">
+                <p class="title">Difficoltà: <span class="input-visual"></span></p>
+                <div class="slider-container">
+                    <input type="range" min="0" max="2" step="1" class="input-diff" oninput="display_difficulty()">
+                </div>
+            </div>
+
+            <button class="confirm" onclick="hide_all_info()">Conferma</button>
+        </div>   
+    </div>
+
+
+
+    <!-- Informazioni sul nemico -->
+    <div class="enemy-info hidden">
+        <div class="container">
+            <!-- <div class="type">Tipologia: <span class="value"></span></div> -->
+            <div class="health">Salute: <span class="value"></span></div>
+            <div class="atk">Danni: <span class="value"></span></div>
+            <div class="def">Armatura: <span class="value"></span></div>
+            <div class="ready"></div>
+
+            <div class="buttons">
+                <button class="attack" onclick="attack()">Attacca</button>
+                <button class="auto-attack" onclick="auto_attack()">Auto</button>
+                <button class="back" onclick="hide_enemy_info()">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- "Gestione" account -->
+    <div class="account-button-container">
+        <button class="account-button" onclick="destination('account.php')">Account</button>
+    </div>
+
+
+    <!-- Gestione movimento tra le pagine durante una partita in corso -->
+    <div class="confirm-leave hidden">
+        Continuando i progessi della partita in corso andranno persi.
+        <br>
+        Sei sicuro di voler continuare?
+        <div class="buttons">
+            <button class="proceed">Si</button>
+            <button class="back" onclick="hide_confirmation()">Indietro</button>
+        </div>
+    </div>
+
+
+    <!-- Fake form for data submission -->
+    <div class="fake-form hidden">
+        <form action="account.php" method="post">
+            <input type="number" name="score" id="score">
+            <input type="number" name="killed" id="killed">
+            <input type="submit" value="send-data" name="game">
+        </form>
+    </div>
+
+    <script src="js/campo.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

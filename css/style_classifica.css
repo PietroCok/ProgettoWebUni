@@ -1,0 +1,155 @@
+body{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+
+    overflow-x: hidden;
+}
+
+button{
+    cursor: pointer;
+}
+
+button:hover,
+a:hover{
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid red !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+/* ---------- pagina classifica -------------------------- */
+
+
+nav, 
+footer{
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    z-index: 100;
+}
+
+nav{
+    top: 0;
+    height: 115px;
+}
+
+
+footer{
+    bottom: 0;
+    padding: 5px 0;
+}
+
+.classifica-container{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    top: 115px;
+
+    padding-bottom: 50px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.interazioni,
+.tipo-classifica{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+
+    padding-bottom: 2px;
+}
+
+.interazioni button,
+footer a{
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    padding: 0.5em;
+}
+
+.hidden{
+    display: none !important;
+}
+
+table{
+    border-collapse: collapse;
+    text-align: left;
+    width: 80%;
+    margin: 0 10%;
+
+    position: relative;
+}
+
+th{
+    position: sticky;
+    top: 116px;
+    background: black;
+    z-index: 10;
+    /* For firefox */
+    background-clip: padding-box
+}
+
+/* top and bottom border for thead */
+th:after,
+th:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: white;
+    height: 1px;
+}
+th::after{
+    bottom: -1px;
+}
+th::before{
+    top: -1px;
+}
+
+tr *{
+    margin: 0 1em;
+    border: 1px solid white;
+    padding: 0.2em 0.5em;
+}
+tr *:nth-child(1){
+    width: 20%;
+}
+tr *:nth-child(2){
+    width: 50%;
+}
+tr *:nth-child(3){
+    width: 30%;
+}
+
+.player{
+    background-color: rgba(255, 217, 0, 0.466);
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+

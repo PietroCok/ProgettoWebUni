@@ -1,0 +1,129 @@
+body{
+    margin: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    gap: 1em;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+
+/* All button style */
+
+a{
+    text-decoration: none;
+    /* permette lo stiling della prima lettera del testo nel link */
+    display: block;
+}
+
+a,
+input[type="submit"],
+button{
+    background: white;
+    color: black;
+    padding: 5px;
+    border-radius: 0.2em;
+    border: 1px solid black;
+    cursor: pointer;
+
+    text-transform: lowercase;
+    width: fit-content;
+}
+
+a:hover,
+input[type="submit"]:hover,
+button:hover{
+    background: black;
+    color: white;
+    border: 1px solid white;
+}
+
+a::first-letter,
+input[type="submit"]::first-letter,
+button::first-letter{
+    text-transform: uppercase;
+}
+
+
+.back{
+    background: rgb(194, 193, 193);
+}
+
+
+/* Windows styling */
+
+.container{
+    background: black;
+    color: white;
+
+    padding: 1em;
+    border-radius: 0.5em;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+form,
+.logger{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container *{
+    margin: 0.5em 1em;
+}
+
+
+/* Altro */
+
+.error{
+    color: red;
+    padding: 0 0.2em;
+    border-radius: 0.2em;
+    border: 1px solid red;
+}
+
+.hidden{
+    display: none !important;
+}
+
+
+/* Pass eff visual indicator */
+.pass-eff{
+    height: 2px;
+    background-color: red;
+    width: 0%;
+    margin: 0;
+    position: relative;
+}
+
+.pass-eff::after{
+    content: 'Password security';
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    width: 15ch;
+    padding: 3px;
+
+    display: none;
+}
+
+.pass-eff:hover::after{
+    display: block;
+}

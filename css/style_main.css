@@ -1,0 +1,612 @@
+:root{
+    --tile-size: 50px;
+    --tile-spacing: 2px;
+    --tile-color: grey;
+    --table-dynamic-width: 500px;
+    --health-percent: 0%;
+    --health-color: lime;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("background/bg-desktop.png");
+    background-position: center;
+}
+
+button{
+    cursor: pointer;
+}
+
+button,
+input[type="submit"],
+a{
+    cursor: pointer;
+    color: black;
+    border: 1px solid transparent;
+    padding: 0.2em 0.5em;
+    background: white;
+    text-transform: lowercase;
+    text-decoration: none;
+}
+
+button::first-letter,
+input[type="submit"]::first-letter,
+a::first-letter{
+    text-transform: uppercase;
+}
+
+button:hover,
+input[type="submit"]:hover,
+a:hover{
+    color: white;
+    background: black;
+    border: 1px solid white;
+}
+
+.back{
+    background-color: rgb(161, 161, 161);
+}
+
+.hidden{
+    display: none !important;
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* Sezione menu di gioco */
+/* ----------------------------------------------------------------------- */
+
+.menu{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 100;
+}
+
+.menu>*{
+    display: flex;
+    gap: 0;
+}
+
+.menu button{
+    flex: 1 0 auto;
+    font-size: large;
+    width: 33%;
+
+    border: 1px solid transparent;
+    padding: 0.5em;
+    background: black;
+    color: white;
+}
+
+.menu button:hover{
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Sezione "Finestra" assegnazione punti */
+/* ----------------------------------------------------------------------- */
+
+
+.creazione-giocatore .container{
+    width: 50%;
+    max-width: 600px;
+    
+    background: black;
+    color: white;
+    border-radius: 15px;
+
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 1em;
+}
+.creazione-giocatore .container>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em;
+}
+
+/* tasti continua/indietro */
+.creazione-giocatore .buttons>button{
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+/* mettiamo il tasto indietro meno in risalto */
+
+.creazione-giocatore .change{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.creazione-giocatore .points-left{
+    margin-right: 15px;
+}
+
+/* tasti aggiunta/rimozione punti */
+.creazione-giocatore div div div button{
+    color: white;
+    border: 0;
+    width: 25px;
+    height: 25px;
+    background: black;
+    border-radius: 50%;
+    padding: 0.5em;
+    margin: 5px;
+
+    font-size: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.creazione-giocatore .title{
+    width: 100%;
+    text-align: center;
+}
+
+.creazione-giocatore h3{
+    width: 100%;
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* Sezione statistiche del giocatore */
+/* ----------------------------------------------------------------------- */
+
+.player-stats{
+    position: absolute;
+    top: 0.5em;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 20px;
+    z-index: 100;
+}
+
+.player-stats .health-bar{
+    width: 60vw;
+    height: 1em;
+    border-radius: 0.3em;
+    
+    background: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+    /* fake border */
+    box-shadow: 0 0 0 2px black;
+}
+
+.health-bar::before{
+    content: '';
+    width: var(--health-percent);
+    background-color: var(--health-color);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-radius: 0.3em;
+}
+
+.health-bar .health{
+    z-index: 10;
+}
+
+.player-stats .atk-power{
+    position: absolute;
+    left : 0;
+    background: white;
+    z-index: -1;
+}
+
+.player-stats .armor{
+    position: absolute;
+    right: 0;
+    background: white;
+    z-index: -1;
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* Sezione Impostazioni */
+/* ----------------------------------------------------------------------- */
+
+.settings .container{
+    width: 30%;
+    max-width: 600px;
+    
+    background: black;
+    color: white;
+    border-radius: 15px;
+
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1em;
+}
+
+.settings .container>div{
+    margin-bottom: 2em;
+}
+
+.settings .container h3{
+    text-align: center;
+    font-weight: 400;
+    text-decoration: underline;
+    margin-bottom: 2em;
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* Sezione campo di gioco */
+/* ----------------------------------------------------------------------- */
+
+
+/* piano */
+.floor{
+    font-size: 1.5rem;
+    margin: 0.5em;
+    padding: 0 0.3em;
+    border: 1px solid black;
+
+    background: white;
+    
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.info{
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    background: white;
+    padding: 0.2em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 10px 10px white;
+}
+
+.campo-di-gioco{
+    /* impedisce il ridimensionamento della tabella */
+    width: var(--table-dynamic-width);
+    background: white;
+    box-shadow: 0 0 20px 20px white;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* celle del campo di gioco */
+.tile{
+    position: relative;
+    width: var(--tile-size);
+    height: var(--tile-size);
+
+    background: var(--tile-color);
+    
+    color: black;
+    padding: 0;
+
+}
+
+.tile img{
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.player img,
+.enemy.open img{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/* Enemy health bar */
+.enemy-health-bar-bg{
+    width: 60%;
+    height: 7%;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 3.5px;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+}
+
+.enemy-health-bar{
+    width: 100%;
+    background-color: lime;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-radius: 3px;
+}
+
+/* celle "nascoste" */
+.clouds{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    z-index: 100;
+}
+/* animazione scoperta celle */
+.tile:where(.open) >.clouds{
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.exit>img{
+    width: 40px;
+    height: 40px;
+    left: 5px;
+    top: 5px;
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* Sezione Info nemico + attacco */
+/* ----------------------------------------------------------------------- */
+
+.enemy-info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 1em;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 100;
+}
+
+.enemy-info .container>div{
+    margin: 1em;
+}
+
+.enemy-info .container>div{
+    width: 10vw;
+    min-width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.enemy-info button{
+    border-radius: 10px;
+}
+
+
+/* overlay of everything under to avoid interactions when a "pop up" is open */
+*.overlay{
+    background-color: rgba(255, 255, 255, 0.479);
+    border: 1px solid red;
+    position: absolute;
+    z-index: 100;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Account manager button */
+.account-button{
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    padding: 0.5em;
+    background-color: black;
+    color: white; 
+    border-radius: 0.7em;
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+.account-button:hover{
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+
+/* Stile link per pagina regole del gioco */
+.help{
+    position: absolute;
+    top: 2%;
+    left: 2%;
+}
+
+.help-symbol{
+    width: 25px;
+    height: 25px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 50%;
+
+    font-size: 20px;
+    font-weight: 900;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.help:hover{
+    background: white;
+    color: black;
+}
+
+.help:hover .help-symbol{
+    background: black;
+    color: white;
+}
+
+.help::after{
+    content: 'Documentazione';
+    position: absolute;
+    border-radius: 0.2em;
+    padding: 0.2em;
+    border: 1px solid black;
+    width: max-content;
+    opacity: 0;
+    transform: translate(-50px, -30px) scale(0);
+    transition: all 0.3s ease;
+}
+
+.help:hover::after{
+    transform: translate(0, 5px) scale(1);
+    opacity: 1;
+}
+
+/* Visualizzazione danni */
+
+.danno-subito{
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: red;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.danno-subito.moving{
+    transform: translate(-50%, 50px);
+    opacity: 0;
+    transition: 1s ease;
+}
+
+/* Tooltip per il tasto 'auto' */
+.auto-attack::after{
+    content: 'Risolve in automatico il combattimento';
+    position: absolute;
+    border-radius: 0.2em;
+    padding: 0.2em;
+    border: 1px solid black;
+    width: max-content;
+    opacity: 0;
+    transform: translate(-130px, 0) scale(0);
+    transition: all 0.3s ease;
+    background: black;
+    color: white;
+}
+
+.auto-attack:hover::after{
+    transform: translate(-130px, 25px) scale(1);
+    opacity: 1;
+}
+
+
+/* Finestra conferma lascia pagine durante una partita in corso */
+.confirm-leave{
+    width: 20%;
+    background: black;
+    border-radius: 1em;
+    padding: 1em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    z-index: 1000;
+    box-shadow: 0 0 10px 10px white;
+}
+
+.confirm-leave .buttons{
+    margin: 0.5em 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-leave button{
+    border-radius: 0.5em;
+    margin: 0 1em;
+}
+
+@media (max-height: 700px){
+    /* sposta il numero del piano e il "suggerimento su un lato" */
+    .floor{
+        left: 5%;
+        top: 15%;
+    }
+    .info{
+        left: 90%;
+        width: 15%;
+        top: 15%;
+    }
+}
+
+@media (max-width:500px) {
+    .settings .container,
+    .creazione-giocatore .container,
+    .confirm-leave{
+        width: 70%;
+    }
+
+    .campo-di-gioco{
+        transform: translate(0%, 0%);
+    }
+
+    .player-stats .health-bar{
+        width: 55vw;
+    }
+}

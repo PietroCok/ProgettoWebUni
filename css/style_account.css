@@ -1,0 +1,139 @@
+body{
+    margin: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    gap: 1em;
+}
+
+a{
+    text-decoration: none;
+}
+
+button,
+input[type="submit"],
+a{
+    cursor: pointer;
+    color: black;
+    border: 1px solid transparent;
+    padding: 0.2em 0.5em;
+    border-radius: 0.5em;
+    background: white;
+    text-transform: lowercase;
+}
+
+button::first-letter,
+input[type="submit"]::first-letter,
+a::first-letter{
+    text-transform: uppercase;
+}
+
+button:hover,
+input[type="submit"]:hover,
+a:hover{
+    color: white;
+    background: black;
+    border: 1px solid white;
+}
+
+
+.hidden{
+    display: none !important;
+}
+
+.container{
+    width: 60%;
+    max-width: 400px;
+
+    background: black;
+    color: white;
+    padding: 1em;
+    border-radius: 1em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.container *{
+    margin: 0.5em 0;
+}
+
+.back{
+    background-color: rgb(161, 161, 161);
+}
+
+.scelta-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.scelta-container *{
+    margin: 1em 1.5em;
+}
+
+
+.login-container,
+.signup-container{
+    text-align: left;
+}
+
+
+span{
+    text-transform: capitalize;
+}
+
+.error{
+    background:white;
+    color: red;
+    padding: 0.2em 0;
+    border: 1px solid red;
+    border-radius: 0.5em;
+    width: 90%;
+}
+
+.pass-eff{
+    height: 2px;
+    background-color: red;
+    width: 0%;
+    margin: 0;
+    position: relative;
+}
+
+.pass-eff::after{
+    content: 'Password security';
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    width: 15ch;
+    padding: 3px;
+
+    display: none;
+}
+
+.pass-eff:hover::after{
+    display: block;
+}
+
+input[type="password"],
+input[type="text"]{
+    width: 96%;
+}
+
+
+

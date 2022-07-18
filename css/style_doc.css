@@ -1,0 +1,12 @@
+body{
+    margin: 2em;
+    font-size: 18px;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: blue;
+}

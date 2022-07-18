@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentazione</title>
+
+    <link rel="stylesheet" href="css/style_doc.css">
+</head>
+<body>
+
+    <h2>Documentazione</h2>
+
+    <h4>Indice</h4>
+    <ul>
+        <li>
+            <a href="#1">Pagine</a>
+        </li>
+        <li>
+            <ul>
+                <li>
+                    <a href="#1.1">Principale</a>
+                </li>
+                <li>
+                    <a href="#1.2">Classifiche</a>
+                </li>
+                <li>
+                    <a href="#1.3">Gestione account</a>
+                </li>
+                <li>
+                    <a href="#1.4">Login</a>
+                </li>
+                <li>
+                    <a href="#1.5">Registrazione</a>
+                </li>
+                <li>
+                    <a href="#1.6">Gestione autenticazione</a>
+                </li>
+                <li>
+                    <a href="#1.7">Documentazione</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#2">Regole</a>
+        </li>
+        <li>
+            <a href="#3">Altre funzionalità interessanti</a>
+        </li>
+        
+    </ul>
+
+    <section id="1" class="pagine">
+        <h3 id="1.1">Progetto (index.html)</h3>
+        <p>
+            Pagina principale in cui è implementato il gioco.
+            Si compone di componenti sia statiche che dinamiche. Tra queste la principale è il campo di gioco effettivo che viene generato dinamicamente avendo delle dimensioni variabili in base alle impostazioni scelte. Sono inoltre presenti varie "finestre" che vengono rese visibili all'utente attraverso la rimozione (e riassegnazione) di una classe di utilità <em>"hidden"</em>. 
+            Sono prensenti 5 tasti principali al primo ingresso nella pagina (escludendo tutti quelli presenti nelle varie finestre nascoste). Il tasto con il simbolo del punto di domanda porta direttamente su questa pagina, il tasto con la dicitura <em>Account</em> porta alla pagina di <a class="inline-link" href="#1.3">gestione dell'account</a>, il tasto con la dicitura <em>Impostazioni</em> permette la modifica di pochi semplici valori per variare le modalità di gioco, il tasto con la dicitura <em>Nuova partita</em> avvia la sessione di gioco mentre il tasto con la dicitura <em>Classifiche</em> porta alla pagina di <a href="#1.2" class="inline-link">Visualizzazione delle classifiche</a>.
+        </p>
+        
+        <h3 id="1.2">Classifiche (classifica.php)</h3>
+        <p>
+            Pagina che si occupa di mostrare sotto forma di classifica le statistiche di ogni giocatore. Ad ogni statistica corrisponde una classifica diversa.
+            Nel caso in cui l'utente sia autenticato allora vedrà il proprio nome evidenziato all'interno della classifica.
+            Se un giocatore cancella il proprio account anche tutte le sue relative statistiche vengono eliminate con conseguenze cancellazione anche dalle classifiche.
+        </p>
+        
+        <h3 id="1.3">Account manager (account.php)</h3>
+        <p>
+           In questa pagina è possibile "gestire" il proprio account, uscendo dalla sessione attiva o eliminando completamente l'account. Se non si è autenticati, invece, si può essere indirizzati alla pagina di login o di registrazione. Sempre in questa pagina viene mostrato un piccolo recap di fine partita, che comprende il punteggio della partita e il numero di nemici sconfitti. Se si completa una partita senza essere autenticati viene data la possibilità di autenticarsi o registrarsi e non perdere le statistiche della partita appena conclusa che verranno salvate in seguito all'autenticazione.
+        </p>    
+
+        <h3 id="1.4">Login (login.php)</h3>
+        <p>
+            Gestisce semplicemente la parte frontend del login.
+        </p>
+
+        <h3 id="1.5">Sign up (signup.php)</h3>
+        <p>
+            Gestisce semplicemente la parte frontend della registrazione.
+        </p>
+
+        <h3 id="1.6">Nascosta (authenticator_manager.php)</h3>
+        <p>
+            Pagina "nascosta" o meglio di solo passaggio, in cui vengono elaborate le richieste di autenticazione/registrazione.
+            In particolare viene gestita tutta la parte di autenticazione/registazione e più in generale la gestione dell'account.
+        </p>
+        
+        <h3 id="1.7">Documentazione (documentazione.html)</h3>
+        <p>
+            Pagina attuale che spiega la suddivisione delle pagine, le funzionalità principali dell'applicazione e le regole del gioco.
+        </p>
+    </section>
+    
+    
+
+    <h3 id="2">Regole del gioco</h3>
+    <p>
+        L'aplicazione consiste in un gioco di ruolo nel quale lo scopo del giocatore è superare il maggior numero di istanze(o piani). Per fare ciò, il giocatore, ha la possibilità di muoversi nel campo di gioco di una casella alla volta. Lo spostamento comporta la scoperta di tutte le caselle circostanti nelle quali può essere presente un nemico oppure l'uscita che conduce all'istanza successiva. A seguito dello spostamento vicino ad un nemico questo non attacca istantaneamente ma aspetta un "turno" (non essendoci una vera e propria suddivisione in turni, il nemico agisce dopo un'interazione del giocatore) dando la possibilità al giocatore di attaccare per primo o di allontanarsi. Sia il giocatore che i nemici hanno un raggio di azione, per attaccare, di una sola casella. Se il giocatore si avvicina una seconda volta ad un nemico già scoperto verrà però attaccato immediatamente.
+        Mentre l'attacco dei nemici verso il giocatore è automatico e istantaneo, l'attacco del giocatore verso i nemici avviene nel seguente modo: il giocatore clicca sul nemico che vuole attaccare con conseguente apertura di una finestra che mostra le statistiche del nemico selezionato, qui il giocatore può ancora decidere di non fare nulla cliccando il tasto dedicato oppure di sferrare un attacco al nemico, a seguito dell'attacco verso un nemico ogni nemico che ha nel raggio d'azione il giocatore attaccherà il giocatore.
+        Viene anche data la possibilità di risolvere in modo completamente automatico il combattimento.
+        I nemici hanno anche un indicatore visiso della salute rimasta.
+        Se un nemico perde tutti i suoi punti vita muore e il giocatore guadagna un punto da assegnare alle sue statistiche una volta che trova l'uscita del piano in cui si trova.
+        Se il giocatore perde tutti i suoi punti vita la partita si conclude e, se il giocatore è autenticato, le statistiche della partita vengono salvate nel database.
+        E' possibile inoltre modificare poche semplici impostazioni, ovvero la dimensione del campo di gioco e la difficoltà della partita.
+        E' importante ricordare che nello spostarsi tra le varie pagine, uno di questi spostamenti avviene anche semplicemente concludendo una partita, le impostazioni vengono resettate.
+        Mentre la seconda opzione delle impostazioni modifica anche il punteggio finale della partita, la prima è più una scelta strategica, infatti il numero di nemici presenti nel campo di gioco è proporzionale alla dimensione del campo di gioco.
+        Il punteggio finale viene calcolato moltiplicando il numero di piani superati per un coefficiente che dipende dalla difficoltà scelta.
+        La modifica delle impostazioni ha effetto solo dalla partita successiva a quella in corso (se c'è una partita in corso).
+        Al superamento di una istanza al giocatore viene chiesto di assegnare tutti i punti guadagnati nel piano precendente (1 + numero di nemici sconfitti nel piano appena concluso) e la sua salute viene riportata al massimo.
+    </p>
+
+
+    <section>
+        <h3 id="3">Altre funzionalità</h3>
+        <h4>Movimento del campo di gioco</h4>
+        <p>
+            Se la finestra di gioco risulta troppo piccola per contenere completamente il campo di gioco, la visuale viene centrata sul giocatore e resta centrata anche durante gli spostamenti.
+        </p>
+        <h4>Suggerimento password</h4>
+        <p>
+            Nonostante non sia richiesta una password sicura in quanto le informazioni salvate non siano sensibili, è stato implementato un controllo della password (nella fase di registrazione) con conseguenti suggerimenti di modifiche/aggiunte da fare alla password per renderla più sicura. E' anche presente un indicatore colorato che indica approssimativamente la sicurezza della password inserita mentre la si digita.
+            I suggerimenti non impediscono comunque di inserire una password poco sicura, la scelta viene lasciata all'utente.
+        </p>
+        <h4>Gestione "finestre"</h4>
+        <p>
+            Nelle varie pagine alcnui elementi sono "sempre presenti" ma nascosti e vengono semplicemente resi visibili/rinascosti quando necessario. 
+        </p>
+        <h4>Salvataggio statistiche partita</h4>
+        <p>
+            Il salvataggio o meglio il "passaggio" delle statistiche della partita al gestore che le salva nel serve avviene tramite un form nascosto che, a fine partita, viene automaticamente compilato e "spedito" alla pagina che si occupa del salvataggio.
+        </p>
+        <h4>
+            Creazione nemici
+        </h4>
+        <p>
+            I nemici vengono piazzati randomicamente sul campo di gioco. Anche loro possiedono delle statistiche in modo simile a quelle del giocatore e anche a loro vengono assegnati dei punti. Per mantenere un paragone tra giocatore e nemici man mano che la partita avanza e il giocatore guadagna punti, anche i nemici guadagnano punti ad ogni piano, punti che vengono loro assegnati randomicamente secondo un pattern in base alla tipologia del nemico stesso. Infatti, seppur non esplicito, i nemici sono suddivisi in categorie: leggera, media e pensante. In base alla categoria sarà più probabile che i punti loro assegnati finiscano in determinate statistiche piuttosto che altre, ad esempio un nemico leggero avrà i punti assegnati con maggiore probabilità alla statistica di danno mentre un nemico pensante avrà più punti assegnati alla statistica salute. Il livello di un nemico determina il numero di punti ad esso assegnati e dipende dalla difficoltà scelta e dal piano raggiunto dal giocatore.
+        </p>
+        <h4>
+            Auto attacco
+        </h4>
+        <p>
+            Viene data la possibilità, cliccando questo tasto, di portare avanti in automatico il combattimento finchè uno tra il nemico selezionato o il giocatore muore.
+        </p>
+        <h4>
+            Indicatore danni subiti dal giocatore
+        </h4>
+        <p>
+            A seguito di un attacco subito dal giocatore, verrà visualizzato a schermo, per pochi secondi, la quantità di danni subiti.
+            Data la possibilità di attacchi "contemporanei" da più nemici è stato introdotto un ritardo randomico a questo indicatore per meglio visualizzare le varie istanze di danno.
+        </p>
+    </section>
+    
+
+    <a class="back" href="index.html">Indietro</a>
+</body>
+</html>
